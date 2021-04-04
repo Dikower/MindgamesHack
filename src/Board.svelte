@@ -22,11 +22,11 @@
     function PaintBoxPlus(){
         massEl[locationEl].state = colorEl;
         if(numberActive< (dataGame['messages'][3]["sgfEvents"].length - 2))numberActive += 2;
-        console.log(numberActive);
+        // console.log(numberActive);
     }
     function PaintBoxMinus(){
         if(numberActive>2)numberActive -= 2;
-        console.log(numberActive);
+        // console.log(numberActive);
         massEl[locationEl].state = "bisque";
     }
 

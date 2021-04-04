@@ -4,7 +4,7 @@
 </script>
 
 
-<!-- <Table/> -->
+<Table/>
 
-<Board/>
+<!-- <Board/> -->
 

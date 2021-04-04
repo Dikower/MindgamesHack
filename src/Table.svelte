@@ -5,7 +5,7 @@
 
 <div class="Table">
     <input type="number" bind:value={kollPerson}>
-
+ 
     {#each Array(kollPerson) as line, i}
         <PersonLine number={i+1}/>
     {/each}

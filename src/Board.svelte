@@ -16,8 +16,10 @@
   // let SecondColor = dataGame['messages'][3]["sgfEvents"][0]["props"][2]["color"];
   // let kollSqInLine = dataGame['messages'][3]["sgfEvents"][0]["props"][0]["size"];
   let Rules, FirstName, FirstColor, SecondName, SecondColor, kollSqInLine, dataGame, sizeBoard, massEl;
-  onMount(async () => {
+
+  dataStore.subscribe(async v => {
     dataGame = (await $dataStore).data;
+    console.log(dataGame)
   })
   let sizeSq = 50
   $: {
@@ -67,6 +69,7 @@
 {:then data}
   <div class="Board">
     <!-- <input type=number bind:value={numberActive}>  -->
+    <button on:click={() => localStorage.clear()}>Clear cache</button>
     <button on:click={PaintBoxPlus}>Plus</button>
     <button on:click={PaintBoxMinus}>Minus</button>
 

@@ -1,7 +1,8 @@
 <script>
   import Square from './Square.svelte';
-  import dataGame from '../data/dataGame.json';
+  // import dataGame from '../data/dataGame.json';
 
+  export let dataGame;
   let Rules = dataGame['messages'][3]["sgfEvents"][0]["props"][0]["rules"];
 
   let FirstName = dataGame['messages'][3]["sgfEvents"][0]["props"][1]["text"];

@@ -1,7 +1,402 @@
 {
-    "1": {
-        "name": "larc", 
-        "rating": "9d"
-    }, 
-    "2": {"name": "RaksaRami", "rating": "9d"}, 
-    "3": {"name": "agcStupGod", "rating": "9d"}, "4": {"name": "koyuki", "rating": "9d"}, "5": {"name": "gomancer", "rating": "9d"}, "6": {"name": "Destroyerb", "rating": "9d"}, "7": {"name": "roln111", "rating": "9d"}, "8": {"name": "pokemon1", "rating": "9d"}, "9": {"name": "dfeldmann", "rating": "9d"}, "10": {"name": "tetsujin", "rating": "9d"}, "11": {"name": "notarobot", "rating": "9d"}, "12": {"name": "skyward66", "rating": "9d"}, "13": {"name": "Crazywind", "rating": "9d"}, "14": {"name": "Abella", "rating": "9d"}, "15": {"name": "ingram", "rating": "9d"}, "16": {"name": "Mingming77", "rating": "9d"}, "17": {"name": "gkang1", "rating": "9d"}, "18": {"name": "cheater", "rating": "9d"}, "19": {"name": "Golaxy6X", "rating": "9d"}, "20": {"name": "stakeout", "rating": "9d"}, "21": {"name": "petgo2", "rating": "9d"}, "22": {"name": "Kevinkim98", "rating": "9d"}, "23": {"name": "cr42y570n3", "rating": "9d"}, "24": {"name": "nononono", "rating": "8d"}, "25": {"name": "darksoul", "rating": "8d"}, "26": {"name": "AI5D", "rating": "8d"}, "27": {"name": "F1", "rating": "8d"}, "28": {"name": "KataGo3090", "rating": "8d"}, "29": {"name": "JBXKataBot", "rating": "8d"}, "30": {"name": "nidza92", "rating": "8d"}, "31": {"name": "supertjc", "rating": "8d"}, "32": {"name": "JBXKata003", "rating": "8d"}, "33": {"name": "ohnoo", "rating": "8d"}, "34": {"name": "JBXKata002", "rating": "8d"}, "35": {"name": "Fredda", "rating": "8d"}, "36": {"name": "ben0", "rating": "8d"}, "37": {"name": "whuang", "rating": "8d"}, "38": {"name": "nethook", "rating": "8d"}, "39": {"name": "JBXKata006", "rating": "8d"}, "40": {"name": "JBXKata004", "rating": "8d"}, "41": {"name": "Namii", "rating": "8d"}, "42": {"name": "JBXKata005", "rating": "8d"}, "43": {"name": "HappyLook", "rating": "8d"}, "44": {"name": "Mustang", "rating": "8d"}, "45": {"name": "ellen", "rating": "8d"}, "46": {"name": "mokumoku", "rating": "8d"}, "47": {"name": "Lukan", "rating": "8d"}, "48": {"name": "saty", "rating": "8d"}, "49": {"name": "Welvang", "rating": "7d"}, "50": {"name": "Thekgs", "rating": "7d"}, "51": {"name": "outch", "rating": "7d"}, "52": {"name": "QueenElsa", "rating": "7d"}, "53": {"name": "NewRipples", "rating": "7d"}, "54": {"name": "boshen", "rating": "7d"}, "55": {"name": "Concerto", "rating": "7d"}, "56": {"name": "apa", "rating": "7d"}, "57": {"name": "eneos", "rating": "7d"}, "58": {"name": "handicap", "rating": "7d"}, "59": {"name": "Danielle", "rating": "7d"}, "60": {"name": "wozzeck", "rating": "7d"}, "61": {"name": "d4", "rating": "7d"}, "62": {"name": "BSK", "rating": "7d"}, "63": {"name": "albatros", "rating": "7d"}, "64": {"name": "tzbk", "rating": "7d"}, "65": {"name": "ProfBender", "rating": "7d"}, "66": {"name": "sseongjin", "rating": "?"}, "67": {"name": "Grisharoot", "rating": "7d"}, "68": {"name": "MaewMaew", "rating": "7d"}, "69": {"name": "wh1rled", "rating": "7d"}, "70": {"name": "Exramas", "rating": "7d"}, "71": {"name": "wishope", "rating": "7d"}, "72": {"name": "GoFree1", "rating": "7d"}, "73": {"name": "Rav3n", "rating": "7d"}, "74": {"name": "Golois6", "rating": "7d"}, "75": {"name": "Doumo", "rating": "7d"}, "76": {"name": "Flo", "rating": "7d"}, "77": {"name": "AkiSanKaku", "rating": "7d"}, "78": {"name": "DaCat", "rating": "7d"}, "79": {"name": "harlem", "rating": "6d"}, "80": {"name": "Tolstoi", "rating": "6d"}, "81": {"name": "foxchaser", "rating": "6d"}, "82": {"name": "shokyu", "rating": "6d"}, "83": {"name": "Amazato", "rating": "6d"}, "84": {"name": "Aerial", "rating": "6d"}, "85": {"name": "Vel", "rating": "6d"}, "86": {"name": "goliard", "rating": "6d"}, "87": {"name": "ju68osaka", "rating": "6d"}, "88": {"name": "iasd", "rating": "6d"}, "89": {"name": "Cassis0", "rating": "6d"}, "90": {"name": "piggreen", "rating": "6d"}, "91": {"name": "sharpmonk", "rating": "6d"}, "92": {"name": "LubedeR", "rating": "6d"}, "93": {"name": "zhangbowen", "rating": "6d"}, "94": {"name": "littleRice", "rating": "6d"}, "95": {"name": "avabot007", "rating": "6d"}, "96": {"name": "hanane18", "rating": "6d"}, "97": {"name": "wegoref1", "rating": "6d"}, "98": {"name": "Assu", "rating": "6d"}, "99": {"name": "domanic", "rating": "6d"}, "100": {"name": "Tsukasa814", "rating": "6d"}}
+  "1": {
+    "name": "larc",
+    "rating": "9d"
+  },
+  "2": {
+    "name": "RaksaRami",
+    "rating": "9d"
+  },
+  "3": {
+    "name": "agcStupGod",
+    "rating": "9d"
+  },
+  "4": {
+    "name": "koyuki",
+    "rating": "9d"
+  },
+  "5": {
+    "name": "gomancer",
+    "rating": "9d"
+  },
+  "6": {
+    "name": "Destroyerb",
+    "rating": "9d"
+  },
+  "7": {
+    "name": "roln111",
+    "rating": "9d"
+  },
+  "8": {
+    "name": "pokemon1",
+    "rating": "9d"
+  },
+  "9": {
+    "name": "dfeldmann",
+    "rating": "9d"
+  },
+  "10": {
+    "name": "tetsujin",
+    "rating": "9d"
+  },
+  "11": {
+    "name": "notarobot",
+    "rating": "9d"
+  },
+  "12": {
+    "name": "skyward66",
+    "rating": "9d"
+  },
+  "13": {
+    "name": "Crazywind",
+    "rating": "9d"
+  },
+  "14": {
+    "name": "Abella",
+    "rating": "9d"
+  },
+  "15": {
+    "name": "ingram",
+    "rating": "9d"
+  },
+  "16": {
+    "name": "Mingming77",
+    "rating": "9d"
+  },
+  "17": {
+    "name": "gkang1",
+    "rating": "9d"
+  },
+  "18": {
+    "name": "cheater",
+    "rating": "9d"
+  },
+  "19": {
+    "name": "Golaxy6X",
+    "rating": "9d"
+  },
+  "20": {
+    "name": "stakeout",
+    "rating": "9d"
+  },
+  "21": {
+    "name": "petgo2",
+    "rating": "9d"
+  },
+  "22": {
+    "name": "Kevinkim98",
+    "rating": "9d"
+  },
+  "23": {
+    "name": "cr42y570n3",
+    "rating": "9d"
+  },
+  "24": {
+    "name": "nononono",
+    "rating": "8d"
+  },
+  "25": {
+    "name": "darksoul",
+    "rating": "8d"
+  },
+  "26": {
+    "name": "AI5D",
+    "rating": "8d"
+  },
+  "27": {
+    "name": "F1",
+    "rating": "8d"
+  },
+  "28": {
+    "name": "KataGo3090",
+    "rating": "8d"
+  },
+  "29": {
+    "name": "JBXKataBot",
+    "rating": "8d"
+  },
+  "30": {
+    "name": "nidza92",
+    "rating": "8d"
+  },
+  "31": {
+    "name": "supertjc",
+    "rating": "8d"
+  },
+  "32": {
+    "name": "JBXKata003",
+    "rating": "8d"
+  },
+  "33": {
+    "name": "ohnoo",
+    "rating": "8d"
+  },
+  "34": {
+    "name": "JBXKata002",
+    "rating": "8d"
+  },
+  "35": {
+    "name": "Fredda",
+    "rating": "8d"
+  },
+  "36": {
+    "name": "ben0",
+    "rating": "8d"
+  },
+  "37": {
+    "name": "whuang",
+    "rating": "8d"
+  },
+  "38": {
+    "name": "nethook",
+    "rating": "8d"
+  },
+  "39": {
+    "name": "JBXKata006",
+    "rating": "8d"
+  },
+  "40": {
+    "name": "JBXKata004",
+    "rating": "8d"
+  },
+  "41": {
+    "name": "Namii",
+    "rating": "8d"
+  },
+  "42": {
+    "name": "JBXKata005",
+    "rating": "8d"
+  },
+  "43": {
+    "name": "HappyLook",
+    "rating": "8d"
+  },
+  "44": {
+    "name": "Mustang",
+    "rating": "8d"
+  },
+  "45": {
+    "name": "ellen",
+    "rating": "8d"
+  },
+  "46": {
+    "name": "mokumoku",
+    "rating": "8d"
+  },
+  "47": {
+    "name": "Lukan",
+    "rating": "8d"
+  },
+  "48": {
+    "name": "saty",
+    "rating": "8d"
+  },
+  "49": {
+    "name": "Welvang",
+    "rating": "7d"
+  },
+  "50": {
+    "name": "Thekgs",
+    "rating": "7d"
+  },
+  "51": {
+    "name": "outch",
+    "rating": "7d"
+  },
+  "52": {
+    "name": "QueenElsa",
+    "rating": "7d"
+  },
+  "53": {
+    "name": "NewRipples",
+    "rating": "7d"
+  },
+  "54": {
+    "name": "boshen",
+    "rating": "7d"
+  },
+  "55": {
+    "name": "Concerto",
+    "rating": "7d"
+  },
+  "56": {
+    "name": "apa",
+    "rating": "7d"
+  },
+  "57": {
+    "name": "eneos",
+    "rating": "7d"
+  },
+  "58": {
+    "name": "handicap",
+    "rating": "7d"
+  },
+  "59": {
+    "name": "Danielle",
+    "rating": "7d"
+  },
+  "60": {
+    "name": "wozzeck",
+    "rating": "7d"
+  },
+  "61": {
+    "name": "d4",
+    "rating": "7d"
+  },
+  "62": {
+    "name": "BSK",
+    "rating": "7d"
+  },
+  "63": {
+    "name": "albatros",
+    "rating": "7d"
+  },
+  "64": {
+    "name": "tzbk",
+    "rating": "7d"
+  },
+  "65": {
+    "name": "ProfBender",
+    "rating": "7d"
+  },
+  "66": {
+    "name": "sseongjin",
+    "rating": "?"
+  },
+  "67": {
+    "name": "Grisharoot",
+    "rating": "7d"
+  },
+  "68": {
+    "name": "MaewMaew",
+    "rating": "7d"
+  },
+  "69": {
+    "name": "wh1rled",
+    "rating": "7d"
+  },
+  "70": {
+    "name": "Exramas",
+    "rating": "7d"
+  },
+  "71": {
+    "name": "wishope",
+    "rating": "7d"
+  },
+  "72": {
+    "name": "GoFree1",
+    "rating": "7d"
+  },
+  "73": {
+    "name": "Rav3n",
+    "rating": "7d"
+  },
+  "74": {
+    "name": "Golois6",
+    "rating": "7d"
+  },
+  "75": {
+    "name": "Doumo",
+    "rating": "7d"
+  },
+  "76": {
+    "name": "Flo",
+    "rating": "7d"
+  },
+  "77": {
+    "name": "AkiSanKaku",
+    "rating": "7d"
+  },
+  "78": {
+    "name": "DaCat",
+    "rating": "7d"
+  },
+  "79": {
+    "name": "harlem",
+    "rating": "6d"
+  },
+  "80": {
+    "name": "Tolstoi",
+    "rating": "6d"
+  },
+  "81": {
+    "name": "foxchaser",
+    "rating": "6d"
+  },
+  "82": {
+    "name": "shokyu",
+    "rating": "6d"
+  },
+  "83": {
+    "name": "Amazato",
+    "rating": "6d"
+  },
+  "84": {
+    "name": "Aerial",
+    "rating": "6d"
+  },
+  "85": {
+    "name": "Vel",
+    "rating": "6d"
+  },
+  "86": {
+    "name": "goliard",
+    "rating": "6d"
+  },
+  "87": {
+    "name": "ju68osaka",
+    "rating": "6d"
+  },
+  "88": {
+    "name": "iasd",
+    "rating": "6d"
+  },
+  "89": {
+    "name": "Cassis0",
+    "rating": "6d"
+  },
+  "90": {
+    "name": "piggreen",
+    "rating": "6d"
+  },
+  "91": {
+    "name": "sharpmonk",
+    "rating": "6d"
+  },
+  "92": {
+    "name": "LubedeR",
+    "rating": "6d"
+  },
+  "93": {
+    "name": "zhangbowen",
+    "rating": "6d"
+  },
+  "94": {
+    "name": "littleRice",
+    "rating": "6d"
+  },
+  "95": {
+    "name": "avabot007",
+    "rating": "6d"
+  },
+  "96": {
+    "name": "hanane18",
+    "rating": "6d"
+  },
+  "97": {
+    "name": "wegoref1",
+    "rating": "6d"
+  },
+  "98": {
+    "name": "Assu",
+    "rating": "6d"
+  },
+  "99": {
+    "name": "domanic",
+    "rating": "6d"
+  },
+  "100": {
+    "name": "Tsukasa814",
+    "rating": "6d"
+  }
+}

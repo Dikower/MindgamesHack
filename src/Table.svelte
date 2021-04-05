@@ -1,4 +1,5 @@
 <script>
+  import dataRating from '../data/dataRating.json';
   import PersonLine from './PersonLine.svelte';
 
   let amount = 4;
@@ -7,7 +8,7 @@
 <main>
   <input type="number" bind:value={amount}>
   {#each Array(amount) as line, i}
-    <PersonLine number={i+1}/>
+    <PersonLine {...dataRating[i + 1]} number={i+1}/>
   {/each}
 </main>
 

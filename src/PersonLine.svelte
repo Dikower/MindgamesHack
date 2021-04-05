@@ -1,14 +1,17 @@
 <script>
-  import dataRating from '../data/dataRating.json';
   import dataPersonGames from '../data/dataPersonGames.json';
   import PersonGames from './PersonGames.svelte';
-  import {each} from 'svelte/internal';
-  import App from './App.svelte';
-  import Board from './Board.svelte';
+  import {retryWrapper, url} from './api';1
+  import {onMount} from 'svelte';
+  import axios from 'axios';
 
+  export let name;
+  export let rating;
   export let number = 0;
-  let name = dataRating[number]["name"];
-  let score = dataRating[number]["rating"];
+
+  let dataStore = retryWrapper(axios.post, url + '/get_all',
+    {username: 'goMstT', password: '4vy2rp', player: name}
+  )
 
   let check = false;
 
@@ -40,13 +43,18 @@
 <div class="information" on:click={funcClickCheck}>
   <p> Number = {number} </p>
   <p> Name = {name} </p>
-  <p> Score = {score} </p>
+  <p> Score = {rating} </p>
 </div>
 
 {#if check}
-  {#each massGames as mass (mass.number)}
-    <PersonGames {...massGames[mass.number]}/>
-  {/each}
+  {#await $dataStore}
+    <p>loading...</p>
+  {:then massGames}
+    <p>{JSON.stringify(massGames)}</p>
+    <!--{#each massGames as mass (mass.number)}-->
+<!--      <PersonGames {...massGames[mass.number]}/>-->
+<!--    {/each}-->
+  {/await}
 {/if}
 
 

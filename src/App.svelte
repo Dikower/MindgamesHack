@@ -5,7 +5,7 @@
 
   const routes = {
     '/': Table,
-    '/board': Board
+    '/board/:timestamp': Board
   }
 </script>
 

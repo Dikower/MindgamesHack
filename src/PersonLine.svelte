@@ -1,18 +1,15 @@
 <script>
-  import dataPersonGames from '../data/dataPersonGames.json';
   import PersonGames from './PersonGames.svelte';
-  import {retryWrapper, url} from './api';1
+  import {retryWrapper, url} from './api';
   import axios from 'axios';
 
   export let name;
   export let rating;
   export let number = 0;
 
-  console.log(name, rating, number)
-  let dataStore = retryWrapper(axios.post, url + '/get_all',
+  let dataStore = retryWrapper(axios.post, url + '/get_last_games',
     {username: 'goMstT', password: '4vy2rp', player: name}
   )
-
   let check = false;
 
   function funcClickCheck() {
@@ -34,7 +31,7 @@
     <p>loading...</p>
   {:then data}
     {#each data.data as game, i}
-      <PersonGames {...game.description} number={i}/>
+      <PersonGames {...game} number={i}/>
     {/each}
   {/await}
 {/if}

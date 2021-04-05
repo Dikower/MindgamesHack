@@ -1,4 +1,5 @@
 <script>
+  import {link} from 'svelte-spa-router'
   export let gameType = "ranked";
   export let score = "lose";
   export let komi = 6.5
@@ -13,7 +14,7 @@
 </script>
 
 <!--TODO send game to board-->
-<a href="/#/board">
+<a href="/board/{timestamp}" use:link>
   <div class="box">
     <div class="info">
       <p class="left">№ {number}</p>

@@ -1,67 +1,87 @@
 <script>
   import Square from './Square.svelte';
-  import dataGame from '../data/dataGame.json';
+  // import dataGame from '../data/dataGame.json';
+  import {retryWrapper, url} from './api';
+  import {onMount} from 'svelte';
+  import axios from 'axios';
 
-  export let dataGame;
-  let Rules = dataGame['messages'][3]["sgfEvents"][0]["props"][0]["rules"];
+  export let params;
+  let timestamp = params.timestamp;
+  let dataStore = retryWrapper(axios.post, url + '/get_game_details', {timestamp})
 
-  let FirstName = dataGame['messages'][3]["sgfEvents"][0]["props"][1]["text"];
-  let FirstColor = dataGame['messages'][3]["sgfEvents"][0]["props"][1]["color"];
-  let SecondName = dataGame['messages'][3]["sgfEvents"][0]["props"][2]["text"];
-  let SecondColor = dataGame['messages'][3]["sgfEvents"][0]["props"][2]["color"];
+  // let Rules = dataGame['messages'][3]["sgfEvents"][0]["props"][0]["rules"];
+  // let FirstName = dataGame['messages'][3]["sgfEvents"][0]["props"][1]["text"];
+  // let FirstColor = dataGame['messages'][3]["sgfEvents"][0]["props"][1]["color"];
+  // let SecondName = dataGame['messages'][3]["sgfEvents"][0]["props"][2]["text"];
+  // let SecondColor = dataGame['messages'][3]["sgfEvents"][0]["props"][2]["color"];
+  // let kollSqInLine = dataGame['messages'][3]["sgfEvents"][0]["props"][0]["size"];
+  let Rules, FirstName, FirstColor, SecondName, SecondColor, kollSqInLine, dataGame, sizeBoard, massEl;
+  onMount(async () => {
+    dataGame = (await $dataStore).data;
+  })
+  let sizeSq = 50
+  $: {
+    Rules = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][0]["rules"];
+    FirstName = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][1]["text"];
+    FirstColor = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][1]["color"];
+    SecondName = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][2]["text"];
+    SecondColor = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][2]["color"];
+    kollSqInLine = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][0]["size"];
+    console.log(dataGame)
+  }
 
-  let kollSqInLine = dataGame['messages'][3]["sgfEvents"][0]["props"][0]["size"];
-  $: sizeSq = 50;
-  $: sizeBoard = kollSqInLine * sizeSq;
+  $: {
+    sizeBoard = kollSqInLine * sizeSq;
+    massEl = []
+    for (let i = 0; i < kollSqInLine * kollSqInLine; i++) {
+      massEl.push({value: i, size: sizeSq, state: 'bisque'});
+    }
+  }
 
-
-  //Кто ходит и асположение для номера numberActive (четное число на один больше те для 1 хода число равно 2)
   let numberActive = 2;
-  $: colorEl = dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["color"];
-  $: locationEl = dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["y"] * kollSqInLine + dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["x"];
+  let colorEl, locationEl;
+  $: {
+    colorEl = dataGame && dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["color"];
+    locationEl = dataGame && dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["y"] * kollSqInLine + dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["x"];
+  }
 
   function PaintBoxPlus() {
     massEl[locationEl].state = colorEl;
     if (numberActive < (dataGame['messages'][3]["sgfEvents"].length - 2)) numberActive += 2;
-    // console.log(numberActive);
   }
 
   function PaintBoxMinus() {
     if (numberActive > 2) numberActive -= 2;
-    // console.log(numberActive);
     massEl[locationEl].state = "bisque";
   }
 
-  let massEl = [];
-  for (let i = 0; i < kollSqInLine * kollSqInLine; i++) {
-    massEl.push({value: i, size: sizeSq, state: 'bisque'});
-  }
-
   function funcKeyDown(event) {
-    console.log(event.key);
     if (event.key == "ArrowLeft") PaintBoxMinus();
     if (event.key == "ArrowRight") PaintBoxPlus();
   }
 </script>
 
 <svelte:window on:keydown={funcKeyDown}/>
+{#await $dataStore}
+  <p>Loading...</p>
+{:then data}
+  <div class="Board">
+    <!-- <input type=number bind:value={numberActive}>  -->
+    <button on:click={PaintBoxPlus}>Plus</button>
+    <button on:click={PaintBoxMinus}>Minus</button>
 
-<div class="Board">
-  <!-- <input type=number bind:value={numberActive}>  -->
-  <button on:click={PaintBoxPlus}>Plus</button>
-  <button on:click={PaintBoxMinus}>Minus</button>
 
+    <div class="information">
+      <p>Rules of the game: {Rules}</p>
+      <p>Name: {FirstName}, Color: {FirstColor}</p>
+      <p>Name: {SecondName}, Color: {SecondColor}</p>
+    </div>
 
-  <div class="information">
-    <p>Rules of the game: {Rules}</p>
-    <p>Name: {FirstName}, Color: {FirstColor}</p>
-    <p>Name: {SecondName}, Color: {SecondColor}</p>
+    <div style="width:{sizeBoard}px">
+      {#each massEl as mass (mass.value)}
+        <!--              <Square value={mass.value} size={mass.size} state={mass.state}/>-->
+        <Square {...mass}/>
+      {/each}
+    </div>
   </div>
-
-  <div style="width:{sizeBoard}px">
-    {#each massEl as mass (mass.value)}
-      <Square value={mass.value} size={mass.size} state={mass.state}/>
-    {/each}
-  </div>
-</div>
-
+{/await}

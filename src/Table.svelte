@@ -1,14 +1,21 @@
 <script>
-    import PersonLine from './PersonLine.svelte';
-    let kollPerson = 4;
+  import PersonLine from './PersonLine.svelte';
+
+  let amount = 4;
 </script>
 
-<div class="Table">
-    <input type="number" bind:value={kollPerson}>
- 
-    {#each Array(kollPerson) as line, i}
-        <PersonLine number={i+1}/>
-    {/each}
-</div>
- 
+<main>
+  <input type="number" bind:value={amount}>
+  {#each Array(amount) as line, i}
+    <PersonLine number={i+1}/>
+  {/each}
+</main>
 
+<style>
+  main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>

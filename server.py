@@ -43,6 +43,7 @@ def mock_json():
 
 @app.post("/get_last_games")
 async def get_last_games(body: Player = Body(...)):
+
     async with httpx.AsyncClient() as c:
         _ = await c.post(
             API_URL,
@@ -68,6 +69,7 @@ async def get_last_games(body: Player = Body(...)):
 
 @app.post("/get_game_details")
 async def get_game_details(body: GameDetails = Body(...)):
+
     async with httpx.AsyncClient() as c:
         _ = await c.post(
             API_URL,

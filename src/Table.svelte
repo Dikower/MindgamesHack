@@ -2,7 +2,7 @@
   import dataRating from '../data/dataRating.json';
   import PersonLine from './PersonLine.svelte';
 
-  let amount = 4;
+  let amount = 5;
 </script>
 
 <main>

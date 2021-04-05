@@ -1,10 +1,15 @@
 <script>
-  export let number = 0;
-  export let score = "lose";
-  export let firstPerson = "person1";
-  export let secondPerson = "person2";
   export let gameType = "ranked";
+  export let score = "lose";
+  export let komi = 6.5
   export let size = 19;
+  export let players = {};
+  export let number = 0;
+  export let timestamp;
+  export let handicap;
+
+  let white = players["white"]["name"];
+  let black = players["black"]["name"];
 </script>
 
 <!--TODO send game to board-->
@@ -12,7 +17,7 @@
   <div class="box">
     <div class="info">
       <p class="left">№ {number}</p>
-      <p class="right">{firstPerson} (white) VS {secondPerson} (black)</p>
+      <p class="right">{white} (white) VS {black} (black)</p>
     </div>
     <div class="info">
       <p class="left">{score}</p>

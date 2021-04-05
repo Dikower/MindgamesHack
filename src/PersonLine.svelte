@@ -2,13 +2,13 @@
   import dataPersonGames from '../data/dataPersonGames.json';
   import PersonGames from './PersonGames.svelte';
   import {retryWrapper, url} from './api';1
-  import {onMount} from 'svelte';
   import axios from 'axios';
 
   export let name;
   export let rating;
   export let number = 0;
 
+  console.log(name, rating, number)
   let dataStore = retryWrapper(axios.post, url + '/get_all',
     {username: 'goMstT', password: '4vy2rp', player: name}
   )
@@ -20,23 +20,6 @@
   }
 
   let massGames = [];
-  massGames.push({
-    number: 0, score: dataPersonGames["score"],
-    firstPerson: dataPersonGames["players"]["white"]["name"],
-    secondPerson: dataPersonGames["players"]["black"]["name"],
-    gameType: dataPersonGames["gameType"],
-    size: dataPersonGames["size"]
-  })
-  massGames.push({
-    number: 1, score: dataPersonGames["score"],
-    firstPerson: dataPersonGames["players"]["white"]["name"],
-    secondPerson: dataPersonGames["players"]["black"]["name"],
-    gameType: dataPersonGames["gameType"],
-    size: dataPersonGames["size"]
-  })
-
-  // console.log(massGames);
-
 </script>
 
 
@@ -49,11 +32,10 @@
 {#if check}
   {#await $dataStore}
     <p>loading...</p>
-  {:then massGames}
-    <p>{JSON.stringify(massGames)}</p>
-    <!--{#each massGames as mass (mass.number)}-->
-<!--      <PersonGames {...massGames[mass.number]}/>-->
-<!--    {/each}-->
+  {:then data}
+    {#each data.data as game, i}
+      <PersonGames {...game.description} number={i}/>
+    {/each}
   {/await}
 {/if}
 

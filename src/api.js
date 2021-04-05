@@ -2,9 +2,20 @@ import {writable} from 'svelte/store';
 export const url = 'http://localhost:8000'
 
 export function retryWrapper(func, ...params) {
-  const store = writable(new Promise(_ => {}));
   const maxRetries = 5;
   const timeout = 0;
+  const cache = true
+
+  const cacheIt = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+  const getCache = (key) => {
+    let saved = localStorage.getItem(key);
+    return saved && JSON.parse(saved);
+  }
+  const strParams = JSON.stringify(params);
+
+  const store = writable(new Promise(_ => {}));
   const load = async (retries = 0) => {
     let error = false;
     let response = await func(...params).catch(err => {
@@ -20,12 +31,26 @@ export function retryWrapper(func, ...params) {
     if (!error) {
       console.log('Successful request')
       store.set(Promise.resolve(response));
+      if (cache){
+        cacheIt(strParams, JSON.stringify(response))
+      }
     }
   }
-  //  TODO cache optional
+
+  if (cache){
+    let data = getCache(strParams);
+    if (data){
+      console.log('Using cache')
+
+      if (typeof data == 'string'){
+        data = JSON.parse(data);
+      }
+      store.set(Promise.resolve(data))
+      return store
+    }
+  }
   load()
   return store;
 }
 
-const loginData = {"type": "LOGIN", "name": "goMstT", "password": "4vy2rp", "locale": "en_US"};
-const user_data = {"type": "JOIN_ARCHIVE_REQUEST", "name": "darksoul"};
+const example = {"username": "goMstT", "password": "4vy2rp", "player": "darksoul"};

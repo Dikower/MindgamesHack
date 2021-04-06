@@ -67,22 +67,51 @@
   <p>Loading...</p>
 {:then data}
   <div class="Board">
-    <!-- <input type=number bind:value={numberActive}>  -->
-    <button on:click={() => localStorage.clear()}>Clear cache</button>
-    <button on:click={PaintBoxPlus}>Plus</button>
-    <button on:click={PaintBoxMinus}>Minus</button>
-
 
     <div class="information">
-      <p>Rules of the game: {Rules}</p>
-      <p>Name: {FirstName}, Color: {FirstColor}</p>
-      <p>Name: {SecondName}, Color: {SecondColor}</p>
+      <h2>Правила: {Rules}</h2>
+      <h2>{FirstName} - {FirstColor} vs {SecondName} - {SecondColor}</h2>
+      <p>Можно использовать стрелки ← →</p>
     </div>
 
-    <div style="width:{sizeBoard}px">
+    <div class="buttons">
+      <button on:click={PaintBoxMinus}>Предыдущий ход</button>
+      <button on:click={PaintBoxPlus}>Следующий ход</button>
+    </div>
+    <div class="go" style="width:{sizeBoard}px; height: {sizeBoard}px">
       {#each massEl as mass (mass.value)}
         <Square {...mass}/>
       {/each}
     </div>
   </div>
 {/await}
+
+<style>
+  .Board {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  button {
+    background: #fbf8f7;
+    border: 1px solid #353D46;
+    border-radius: 30px;
+    color: #353D46;
+    margin: 0 10px;
+    padding: 15px;
+  }
+  .buttons {
+    margin-bottom: 30px;
+  }
+  h2 {
+    margin: 7px 0;
+  }
+  .information {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+</style>

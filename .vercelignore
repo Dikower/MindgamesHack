@@ -1,5 +1,4 @@
-/node_modules/
-/public/build/
+node_modules
 .yarn
 __pycache__
 
@@ -7,5 +6,3 @@ __pycache__
 .DS_Store
 .pnp.js
 yarn.lock
-
-.vercel

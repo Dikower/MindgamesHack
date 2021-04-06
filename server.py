@@ -8,6 +8,7 @@ from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+
 class Player(BaseModel):
     username: str
     password: str

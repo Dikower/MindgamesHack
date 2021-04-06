@@ -4,7 +4,7 @@ export const url = 'http://localhost:8000'
 export function retryWrapper(func, ...params) {
   const maxRetries = 5;
   const timeout = 0;
-  const cache = true
+  const cache = true;
 
   const cacheIt = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));

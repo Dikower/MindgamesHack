@@ -8,54 +8,35 @@
   let timestamp = params.timestamp;
   let dataStore = retryWrapper(axios.post, url + '/get_game_details', {timestamp})
 
-  // let Rules = dataGame['messages'][3]["sgfEvents"][0]["props"][0]["rules"];
-  // let FirstName = dataGame['messages'][3]["sgfEvents"][0]["props"][1]["text"];
-  // let FirstColor = dataGame['messages'][3]["sgfEvents"][0]["props"][1]["color"];
-  // let SecondName = dataGame['messages'][3]["sgfEvents"][0]["props"][2]["text"];
-  // let SecondColor = dataGame['messages'][3]["sgfEvents"][0]["props"][2]["color"];
-  // let kollSqInLine = dataGame['messages'][3]["sgfEvents"][0]["props"][0]["size"];
   let Rules, FirstName, FirstColor, SecondName, SecondColor, kollSqInLine, dataGame, sizeBoard;
+
+  let sizeSq = 50
+  let massEl = [];
 
   dataStore.subscribe(async v => {
     dataGame = (await $dataStore).data;
     console.log(dataGame)
-  })
-
-  let sizeSq = 50
-
-  $: {
     Rules = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][0]["rules"];
     FirstName = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][1]["text"];
     FirstColor = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][1]["color"];
     SecondName = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][2]["text"];
     SecondColor = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][2]["color"];
     kollSqInLine = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][0]["size"];
-    if(massEl.length==0){
+    if (massEl.length === 0) {
+      console.log('sq', kollSqInLine)
       sizeBoard = kollSqInLine * sizeSq;
       for (let i = 0; i < kollSqInLine * kollSqInLine; i++) {
         massEl.push({value: i, size: sizeSq, state: 'bisque'});
       }
-    } 
-    console.log(dataGame)
-  }
-
-
-
-  let massEl = [];  
-$: {  
-  
-}
-  
+    }
+    console.log('dat', dataGame)
+  })
 
   let numberActive = 2;
   let colorEl, locationEl;
-  
+
   $: colorEl = dataGame && dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["color"];
   $: locationEl = dataGame && dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["y"] * kollSqInLine + dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["x"];
-  
- 
-
-
 
 
   function PaintBoxPlus() {
@@ -99,7 +80,6 @@ $: {
     </div>
 
     <div style="width:{sizeBoard}px">
-      <p>{JSON.stringify(massEl)}</p>
       {#each massEl as mass (mass.value)}
         <Square {...mass}/>
       {/each}

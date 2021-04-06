@@ -23,13 +23,13 @@
     SecondColor = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][2]["color"];
     kollSqInLine = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][0]["size"];
     if (massEl.length === 0) {
-      console.log('sq', kollSqInLine)
+      // console.log('sq', kollSqInLine)
       sizeBoard = kollSqInLine * sizeSq;
       for (let i = 0; i < kollSqInLine * kollSqInLine; i++) {
         massEl.push({value: i, size: sizeSq, state: 'bisque'});
       }
     }
-    console.log('dat', dataGame)
+    // console.log('dat', dataGame)
   })
 
   let numberActive = 2;
@@ -42,18 +42,18 @@
   function PaintBoxPlus() {
     massEl[locationEl].state = colorEl;
     if (numberActive < (dataGame['messages'][3]["sgfEvents"].length - 2)) numberActive += 2;
-    console.log(colorEl);
-    console.log(numberActive);
-    console.log(locationEl);
-    console.log(massEl);
+    // console.log(colorEl);
+    // console.log(numberActive);
+    // console.log(locationEl);
+    // console.log(massEl);
   }
 
   function PaintBoxMinus() {
     if (numberActive > 2) numberActive -= 2;
     massEl[locationEl].state = "bisque";
-    console.log(colorEl);
-    console.log(numberActive);
-    console.log(locationEl);
+    // console.log(colorEl);
+    // console.log(numberActive);
+    // console.log(locationEl);
   }
 
   function funcKeyDown(event) {
@@ -78,13 +78,26 @@
       <button on:click={PaintBoxMinus}>Предыдущий ход</button>
       <button on:click={PaintBoxPlus}>Следующий ход</button>
     </div>
+
+    
     <div class="go" style="width:{sizeBoard}px; height: {sizeBoard}px">
       {#each massEl as mass (mass.value)}
         <Square {...mass}/>
       {/each}
     </div>
+
+
+    <progress max={dataGame['messages'][3]["sgfEvents"].length - 2} value={numberActive} class="progressBar"></progress>
+
   </div>
 {/await}
+
+
+
+
+
+
+
 
 <style>
   .Board {
@@ -113,5 +126,8 @@
     justify-content: center;
     align-items: center;
     margin: 20px 0;
+  }
+  .progressBar{
+    width: 400px;
   }
 </style>

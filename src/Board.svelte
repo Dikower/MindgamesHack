@@ -2,7 +2,6 @@
   import Square from './Square.svelte';
   // import dataGame from '../data/dataGame.json';
   import {retryWrapper, url} from './api';
-  import {onMount} from 'svelte';
   import axios from 'axios';
 
   export let params;
@@ -15,13 +14,15 @@
   // let SecondName = dataGame['messages'][3]["sgfEvents"][0]["props"][2]["text"];
   // let SecondColor = dataGame['messages'][3]["sgfEvents"][0]["props"][2]["color"];
   // let kollSqInLine = dataGame['messages'][3]["sgfEvents"][0]["props"][0]["size"];
-  let Rules, FirstName, FirstColor, SecondName, SecondColor, kollSqInLine, dataGame, sizeBoard, massEl;
+  let Rules, FirstName, FirstColor, SecondName, SecondColor, kollSqInLine, dataGame, sizeBoard;
 
   dataStore.subscribe(async v => {
     dataGame = (await $dataStore).data;
     console.log(dataGame)
   })
+
   let sizeSq = 50
+
   $: {
     Rules = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][0]["rules"];
     FirstName = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][1]["text"];
@@ -29,32 +30,49 @@
     SecondName = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][2]["text"];
     SecondColor = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][2]["color"];
     kollSqInLine = dataGame && dataGame['messages'][3]["sgfEvents"][0]["props"][0]["size"];
+    if(massEl.length==0){
+      sizeBoard = kollSqInLine * sizeSq;
+      for (let i = 0; i < kollSqInLine * kollSqInLine; i++) {
+        massEl.push({value: i, size: sizeSq, state: 'bisque'});
+      }
+    } 
     console.log(dataGame)
   }
 
-  $: {
-    sizeBoard = kollSqInLine * sizeSq;
-    massEl = []
-    for (let i = 0; i < kollSqInLine * kollSqInLine; i++) {
-      massEl.push({value: i, size: sizeSq, state: 'bisque'});
-    }
-  }
+
+
+  let massEl = [];  
+$: {  
+  
+}
+  
 
   let numberActive = 2;
   let colorEl, locationEl;
-  $: {
-    colorEl = dataGame && dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["color"];
-    locationEl = dataGame && dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["y"] * kollSqInLine + dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["x"];
-  }
+  
+  $: colorEl = dataGame && dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["color"];
+  $: locationEl = dataGame && dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["y"] * kollSqInLine + dataGame['messages'][3]["sgfEvents"][numberActive]["props"][0]["loc"]["x"];
+  
+ 
+
+
+
 
   function PaintBoxPlus() {
     massEl[locationEl].state = colorEl;
     if (numberActive < (dataGame['messages'][3]["sgfEvents"].length - 2)) numberActive += 2;
+    console.log(colorEl);
+    console.log(numberActive);
+    console.log(locationEl);
+    console.log(massEl);
   }
 
   function PaintBoxMinus() {
     if (numberActive > 2) numberActive -= 2;
     massEl[locationEl].state = "bisque";
+    console.log(colorEl);
+    console.log(numberActive);
+    console.log(locationEl);
   }
 
   function funcKeyDown(event) {
@@ -81,8 +99,8 @@
     </div>
 
     <div style="width:{sizeBoard}px">
+      <p>{JSON.stringify(massEl)}</p>
       {#each massEl as mass (mass.value)}
-        <!--              <Square value={mass.value} size={mass.size} state={mass.state}/>-->
         <Square {...mass}/>
       {/each}
     </div>

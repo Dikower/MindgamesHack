@@ -19,9 +19,7 @@
    <line stroke="#999999" x1="0" y1={sizeD} x2={size} y2={sizeD} opacity="0.5"/>
    <line stroke="#999999" x1={sizeD} y1="0" x2={sizeD} y2={size} opacity="0.5"/>
    {#if state != "bisque"}
-   <!-- <ellipse stroke="#999999" cx={sizeD} cy={sizeD}  rx="1.375" ry="1.375" stroke-width="1"/> -->
-   <!-- {:else} -->
-   <ellipse stroke={state} cx={sizeD} cy={sizeD}  rx="1.375" ry="1.375" stroke-width="8"/>
+   <circle cx={sizeD} cy={sizeD} r="15" stroke="black" stroke-width="1" fill={state} />
    {/if}
   </g>
  </svg>

@@ -1,5 +1,6 @@
 <script>
-  import {link} from 'svelte-spa-router'
+  import {link} from 'svelte-spa-router';
+
   export let gameType = "ranked";
   export let score = "lose";
   export let komi = 6.5
@@ -13,7 +14,6 @@
   let black = players["black"]["name"];
 </script>
 
-<!--TODO send game to board-->
 <a href="/board/{timestamp}" use:link>
   <div class="box">
     <div class="info">
@@ -30,7 +30,14 @@
   .box {
     width: 400px;
     border: 1px double gainsboro;
-    margin-bottom: 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: all 0.7s ease;
+  }
+
+  .box:hover {
+    border-color: #999999;
   }
 
   .info {

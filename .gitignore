@@ -1,6 +1,7 @@
 /node_modules/
 /public/build/
 .yarn
+__pycache__
 
 .yarnrc.yml
 .DS_Store

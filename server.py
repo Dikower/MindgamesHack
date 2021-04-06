@@ -6,7 +6,7 @@ import uvicorn
 from fastapi import Body, FastAPI
 from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
-
+from fastapi.staticfiles import StaticFiles
 
 class Player(BaseModel):
     username: str
@@ -22,7 +22,7 @@ app = FastAPI()
 origins = [
     "http://localhost:5000",
     "http://localhost",
-    "http://localhost:8080",
+    "http://localhost:8000",
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -31,7 +31,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 API_URL = "https://www.gokgs.com/json/access"
 
 
@@ -88,6 +87,7 @@ async def get_game_details(body: GameDetails = Body(...)):
 
         return response.json()
 
+app.mount('/', StaticFiles(directory='public', html=True), name='static')
 
 if __name__ == "__main__":
     uvicorn.run("server:app", use_colors=True)

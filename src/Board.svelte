@@ -57,8 +57,8 @@
   }
 
   function funcKeyDown(event) {
-    if (event.key == "ArrowLeft") PaintBoxMinus();
-    if (event.key == "ArrowRight") PaintBoxPlus();
+    if (event.key === "ArrowLeft") PaintBoxMinus();
+    if (event.key === "ArrowRight") PaintBoxPlus();
   }
 </script>
 

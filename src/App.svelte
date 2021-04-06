@@ -11,3 +11,8 @@
 
 <Router {routes}/>
 
+<style>
+  :global(html){
+    background: #fbf8f7;
+  }
+</style>

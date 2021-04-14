@@ -1,6 +1,6 @@
 import {writable} from 'svelte/store';
-// export const url = 'http://localhost:8000'
-export const url = ''
+export const url = 'http://localhost:8000'
+// export const url = ''
 
 export function retryWrapper(func, ...params) {
   const maxRetries = 5;

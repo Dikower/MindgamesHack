@@ -45,7 +45,7 @@
     // console.log(colorEl);
     // console.log(numberActive);
     // console.log(locationEl);
-    // console.log(massEl);
+    console.log(massEl);
   }
 
   function PaintBoxMinus() {

@@ -1,10 +1,12 @@
 <script>
-  import Table from './Table.svelte';
+  import Table from './Table.svelte'
+  import Game from './Game.svelte'
   import Board from './Board.svelte'
   import Router from 'svelte-spa-router'
 
   const routes = {
-    '/': Table,
+    // '/': Table,
+    '/': Game,
     '/board/:timestamp': Board
   }
 </script>

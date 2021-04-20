@@ -26,7 +26,7 @@
       // console.log('sq', kollSqInLine)
       sizeBoard = kollSqInLine * sizeSq;
       for (let i = 0; i < kollSqInLine * kollSqInLine; i++) {
-        massEl.push({value: i, size: sizeSq, state: 'bisque'});
+        massEl.push({size: sizeSq, state: 'bisque'});
       }
     }
     // console.log('dat', dataGame)
@@ -45,7 +45,7 @@
     // console.log(colorEl);
     // console.log(numberActive);
     // console.log(locationEl);
-    console.log(massEl);
+    // console.log(massEl);
   }
 
   function PaintBoxMinus() {
@@ -73,7 +73,7 @@
       <h2>{FirstName} - {FirstColor} vs {SecondName} - {SecondColor}</h2>
       <p>Можно использовать стрелки ← →</p>
     </div>
-
+ 
     <div class="buttons">
       <button on:click={PaintBoxMinus}>Предыдущий ход</button>
       <button on:click={PaintBoxPlus}>Следующий ход</button>
@@ -81,7 +81,7 @@
 
     
     <div class="go" style="width:{sizeBoard}px; height: {sizeBoard}px">
-      {#each massEl as mass (mass.value)}
+      {#each massEl as mass}
         <Square {...mass}/>
       {/each}
     </div>

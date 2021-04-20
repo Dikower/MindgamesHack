@@ -1,14 +1,15 @@
 <script>
-  export let value = 0;
+  export let x = 0;
+  export let y = 0;
   export let size = 50;
   export let state = "bisque";
-  export let funcPaint;
+  export let funcPaint = {};
   let sizeD = size/2;
   function funcClick() {
     funcPaint();
   }
 </script>
-
+ 
 <svg on:click|once={funcClick} width={size} height={size} viewBox="0 0 {size} {size}" >
   <g>
    <rect x="0" y="0" width={size} height={size}  fill="#fbefdf"/>

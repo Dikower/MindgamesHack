@@ -12,52 +12,12 @@
 
   function funcPaint(x, y) {
     //функция очистки
-    let provForStand = true;
-    if ($count % 2 === 0){
-      //ставим black
-      if (x + 1 < kollSqInLine) {
-        if (massEl[y][x + 1].state !== "white") {
-          provForStand = false;
-        }
-      }
-      if (x - 1 >= 0) {
-        if (massEl[y][x - 1].state !==  "white") {
-          provForStand = false;
-        }
-      }
-      if (y + 1 < kollSqInLine) {
-        if (massEl[y+1][x].state !== "white") {
-          provForStand = false;
-        }
-      }
-      if (y - 1 >= 0) {
-        if (massEl[y-1][x].state !== "white") {
-          provForStand = false;
-        }
-      }
-    }else {
-      if (x + 1 < kollSqInLine) {
-        if (massEl[y][x + 1].state !== "black") {
-          provForStand = false;
-        }
-      }
-      if (x - 1 >= 0) {
-        if (massEl[y][x - 1].state !==  "black") {
-          provForStand = false;
-        }
-      }
-      if (y + 1 < kollSqInLine) {
-        if (massEl[y+1][x].state !== "black") {
-          provForStand = false;
-        }
-      }
-      if (y - 1 >= 0) {
-        if (massEl[y-1][x].state !== "black") {
-          provForStand = false;
-        }
-      }
-    }
-    if(provForStand)return;
+    let matrixForProv = [];
+    let stateProv = true;
+    funcPeresobratMtrix();
+
+
+
     function funcProv(x, y, color) {
       console.log(x, y);
       matrixForProv[y][x] = 1;
@@ -123,8 +83,8 @@
       }
     }
     // console.log("Нажали на ", y, x);
-    let matrixForProv = [];
-    let stateProv = true;
+    
+    stateProv = true;
 
     function funcPeresobratMtrix() {
       matrixForProv = [];
@@ -231,6 +191,29 @@
       }
       gameState = "black";
     }
+    //-----------------------------
+    if($count % 2 === 0) {
+      funcProv(x, y, "black");
+      console.log(stateProv);
+      if(stateProv){
+        massEl[y][x].state="bisque";
+        count.decrement();
+        gameState = "black";
+      }
+      stateProv = true;
+      funcPeresobratMtrix();
+    } else {
+      funcProv(x, y, "white");
+      console.log(stateProv);
+      if(stateProv){
+        massEl[y][x].state="bisque";
+        count.decrement();
+        gameState = "white";
+      } 
+      stateProv = true;
+      funcPeresobratMtrix();
+    }
+    //-----------------------------
     count.increment();
   }
 

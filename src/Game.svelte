@@ -7,9 +7,57 @@
   let massEl = [];
   let gameState = "black";
 
+  let blackScore = 0;
+  let whiteScore = 0;
+
   function funcPaint(x, y) {
     //функция очистки
-
+    let provForStand = true;
+    if ($count % 2 === 0){
+      //ставим black
+      if (x + 1 < kollSqInLine) {
+        if (massEl[y][x + 1].state !== "white") {
+          provForStand = false;
+        }
+      }
+      if (x - 1 >= 0) {
+        if (massEl[y][x - 1].state !==  "white") {
+          provForStand = false;
+        }
+      }
+      if (y + 1 < kollSqInLine) {
+        if (massEl[y+1][x].state !== "white") {
+          provForStand = false;
+        }
+      }
+      if (y - 1 >= 0) {
+        if (massEl[y-1][x].state !== "white") {
+          provForStand = false;
+        }
+      }
+    }else {
+      if (x + 1 < kollSqInLine) {
+        if (massEl[y][x + 1].state !== "black") {
+          provForStand = false;
+        }
+      }
+      if (x - 1 >= 0) {
+        if (massEl[y][x - 1].state !==  "black") {
+          provForStand = false;
+        }
+      }
+      if (y + 1 < kollSqInLine) {
+        if (massEl[y+1][x].state !== "black") {
+          provForStand = false;
+        }
+      }
+      if (y - 1 >= 0) {
+        if (massEl[y-1][x].state !== "black") {
+          provForStand = false;
+        }
+      }
+    }
+    if(provForStand)return;
     function funcProv(x, y, color) {
       console.log(x, y);
       matrixForProv[y][x] = 1;
@@ -47,6 +95,11 @@
       }
     }
     function funcPocras(x, y, color) {
+      if(color === "white"){
+        blackScore++;
+      }else{
+        whiteScore++;
+      }
       massEl[y][x].state = "bisque";
       if (x + 1 < kollSqInLine) {
         if (massEl[y][x + 1].state === color) {
@@ -92,7 +145,7 @@
           if (stateProv) {
             funcPocras(x + 1, y, "white");
           }
-          stateProv = false;
+          stateProv = true;
           funcPeresobratMtrix();
         }
       }
@@ -103,7 +156,7 @@
           if (stateProv) {
             funcPocras(x - 1, y, "white");
           }
-          stateProv = false;
+          stateProv = true;
           funcPeresobratMtrix();
         }
       }
@@ -114,7 +167,7 @@
           if (stateProv) {
             funcPocras(x, y + 1, "white");
           }
-          stateProv = false;
+          stateProv = true;
           funcPeresobratMtrix();
         }
       }
@@ -125,13 +178,57 @@
           if (stateProv) {
             funcPocras(x, y - 1, "white");
           }
-          stateProv = false;
+          stateProv = true;
           funcPeresobratMtrix();
         }
       }
       gameState = "white";
     } else {
       massEl[y][x].state = "white";
+      if (x + 1 < kollSqInLine) {
+        if (massEl[y][x + 1].state === "black") {
+          funcProv(x + 1, y, "black");
+          console.log(stateProv);
+          if (stateProv) {
+            funcPocras(x + 1, y, "black");
+          }
+          stateProv = true;
+          funcPeresobratMtrix();
+        }
+      }
+      if (x - 1 >= 0) {
+        if (massEl[y][x - 1].state === "black") {
+          funcProv(x - 1, y, "black");
+          console.log(stateProv);
+          if (stateProv) {
+            funcPocras(x - 1, y, "black");
+          }
+          stateProv = true;
+          funcPeresobratMtrix();
+        }
+      }
+      if (y + 1 < kollSqInLine) {
+        if (massEl[y + 1][x].state === "black") {
+          funcProv(x, y + 1, "black");
+          console.log(stateProv);
+          if (stateProv) {
+            funcPocras(x, y + 1, "black");
+          }
+          stateProv = true;
+          funcPeresobratMtrix();
+        }
+      }
+      if (y - 1 >= 0) {
+        if (massEl[y - 1][x].state === "black") {
+          funcProv(x, y - 1, "black");
+          console.log(stateProv);
+          if (stateProv) {
+            funcPocras(x, y - 1, "black");
+          }
+          stateProv = true;
+          funcPeresobratMtrix();
+        }
+      }
       gameState = "black";
     }
     count.increment();
@@ -146,6 +243,8 @@
 </script>
 
 <h1>Сейчас ходит игрок - {gameState}</h1>
+<h2>Очки игрока black: {blackScore}</h2>
+<h2>Очки игрока white: {whiteScore}</h2>
 <div class="go" style="width:{sizeBoard}px; height: {sizeBoard}px">
   {#each massEl as mass}
     {#each mass as el}

@@ -5,8 +5,8 @@
   import Router from 'svelte-spa-router'
 
   const routes = {
-    '/': Table,
-    // '/': Game,
+    // '/': Table,
+    '/': Game,
     '/board/:timestamp': Board
   }
 </script>

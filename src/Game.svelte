@@ -1,5 +1,6 @@
 <script>
   import Square from "./Square.svelte";
+  import FieldEditor from "./FieldEditor.svelte";
   import { count } from "./storage";
   let sizeSq = 50;
   let kollSqInLine = 9;
@@ -10,13 +11,12 @@
   let blackScore = 0;
   let whiteScore = 0;
 
+  //функция для компонента square
   function funcPaint(x, y) {
     //функция очистки
     let matrixForProv = [];
     let stateProv = true;
     funcPeresobratMtrix();
-
-
 
     function funcProv(x, y, color) {
       console.log(x, y);
@@ -55,9 +55,9 @@
       }
     }
     function funcPocras(x, y, color) {
-      if(color === "white"){
+      if (color === "white") {
         blackScore++;
-      }else{
+      } else {
         whiteScore++;
       }
       massEl[y][x].state = "bisque";
@@ -83,7 +83,7 @@
       }
     }
     // console.log("Нажали на ", y, x);
-    
+
     stateProv = true;
 
     function funcPeresobratMtrix() {
@@ -192,11 +192,11 @@
       gameState = "black";
     }
     //-----------------------------
-    if($count % 2 === 0) {
+    if ($count % 2 === 0) {
       funcProv(x, y, "black");
       console.log(stateProv);
-      if(stateProv){
-        massEl[y][x].state="bisque";
+      if (stateProv) {
+        massEl[y][x].state = "bisque";
         count.decrement();
         gameState = "black";
       }
@@ -205,11 +205,11 @@
     } else {
       funcProv(x, y, "white");
       console.log(stateProv);
-      if(stateProv){
-        massEl[y][x].state="bisque";
+      if (stateProv) {
+        massEl[y][x].state = "bisque";
         count.decrement();
         gameState = "white";
-      } 
+      }
       stateProv = true;
       funcPeresobratMtrix();
     }
@@ -217,6 +217,13 @@
     count.increment();
   }
 
+  //функции для компонента fieldEditor
+  function funcUpdate(x, y, color) {
+    console.log(x, y, color);
+    massEl[y - 1][x - 1].state = color;
+  }
+
+  //для этого компонента
   for (let i = 0; i < kollSqInLine; i++) {
     massEl.push([]);
     for (let q = 0; q < kollSqInLine; q++) {
@@ -228,6 +235,9 @@
 <h1>Сейчас ходит игрок - {gameState}</h1>
 <h2>Очки игрока black: {blackScore}</h2>
 <h2>Очки игрока white: {whiteScore}</h2>
+
+<FieldEditor {funcUpdate} {kollSqInLine} />
+
 <div class="go" style="width:{sizeBoard}px; height: {sizeBoard}px">
   {#each massEl as mass}
     {#each mass as el}

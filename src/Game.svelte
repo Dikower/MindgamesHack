@@ -236,12 +236,12 @@
 <h2>Очки игрока black: {blackScore}</h2>
 <h2>Очки игрока white: {whiteScore}</h2>
 
-<FieldEditor {funcUpdate} {kollSqInLine} />
+<!-- <FieldEditor {funcUpdate} {kollSqInLine} /> -->
 
 <div class="go" style="width:{sizeBoard}px; height: {sizeBoard}px">
   {#each massEl as mass}
     {#each mass as el}
-      <Square {...el} funcPaint={() => funcPaint(el.x, el.y)} />
+      <Square {...el} funcPaint={() => funcPaint(el.x, el.y)} {kollSqInLine}/>
     {/each}
   {/each}
 </div>

@@ -1,5 +1,8 @@
 import {writable} from 'svelte/store';
+export const centaurToken = 'TtfdLxJelMNtxDMJ'
+export const backendUrl = 'https://go-backend-denis.ambersoft.llc/'
 export const url = 'http://localhost:8000'
+
 // export const url = ''
 
 export function retryWrapper(func, ...params) {

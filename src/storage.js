@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-function createCount() {
+function simpleCount() {
 	const { subscribe, set, update } = writable(0);
 
 	return {
@@ -11,4 +11,8 @@ function createCount() {
 	};
 }
 
-export const count = createCount();
+export const stepNumber = simpleCount();
+export const blackScore = simpleCount();
+export const whiteScore = simpleCount();
+export const blackStonesCount = simpleCount();
+export const whiteStonesCount = simpleCount();

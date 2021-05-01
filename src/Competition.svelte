@@ -2,6 +2,18 @@
     import Table from './Table.svelte'
     import Game from './Game.svelte'
     import Board from './Board.svelte'
+    import { stepNumber } from "./storage";
+    import { blackScore } from "./storage";
+    import { whiteScore } from "./storage";
+    import { blackStonesCount } from "./storage";
+    import { whiteStonesCount } from "./storage";
+
+    $: gameState = $stepNumber%2;
+    $: colorAttack = gameState ? "white" : "black";
+    function funcSkip(){
+      stepNumber.decrement();
+    }
+
   </script>
 <svelte:head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -15,34 +27,33 @@
       <div class="podskazki ">
         <h1 class="text-align-center">Подсказки</h1>
         <div class="btn-group-vertical ">
-          <button class="btn"> Подсказка -  1</button>
+          <!-- <button class="btn"> Подсказка -  1</button>
           <button class="btn"> Подсказка -  2</button>
           <button class="btn"> Подсказка -  3</button>
-          <button class="btn"> Подсказка -  4</button>
+          <button class="btn"> Подсказка -  4</button> -->
         </div>
       </div>
 
     </div>
     <div class="col-md-6">
       <div class="game">
-	<Game/>	
+        <h3>{colorAttack}</h3>
+	      <Game/>	
       </div>
     </div>
     <div class="col-md-3">
       <div class="row">
         <div class="players">
           <div class="player row">
-            <h2>Игрок 1 </h2>
+            <h2>Игрок 1 (black)</h2>
           </div>
-          <p>Очков : 20</p>
-          <p>Камней : 20</p>
+          <p>Очков : {$blackScore}</p>
+          <p>Камней : {$blackStonesCount}</p>
 
           <div class="player row">
-            <h2>
-              Игрок 2
-            </h2>
-            <p>Очков : 30</p>
-            <p>Камней : 20</p>
+            <h2> Игрок 2 (white)</h2>
+            <p>Очков : {$whiteScore}</p>
+            <p>Камней : {$whiteStonesCount}</p>
 
           </div>
         </div>
@@ -63,7 +74,7 @@
           <span><h3>00:00</h3></span>
         </div>
         <div class="col-6">
-          <span><h3>сдаться</h3></span>
+          <button on:click={funcSkip}><h3>пропуск хода</h3></button>
         </div>
       </div>
     </div>

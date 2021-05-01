@@ -1,15 +1,17 @@
 <script>
   import Square from "./Square.svelte";
   import FieldEditor from "./FieldEditor.svelte";
-  import { count } from "./storage";
+  import { stepNumber } from "./storage";
   let sizeSq = 50;
   let kollSqInLine = 9;
   let sizeBoard = kollSqInLine * sizeSq;
   let massEl = [];
   let gameState = "black";
 
-  let blackScore = 0;
-  let whiteScore = 0;
+  import { blackScore } from "./storage";
+  import { whiteScore } from "./storage";
+  import { blackStonesCount } from "./storage";
+  import { whiteStonesCount } from "./storage";
 
   //функция для компонента square
   function funcPaint(x, y) {
@@ -56,9 +58,11 @@
     }
     function funcPocras(x, y, color) {
       if (color === "white") {
-        blackScore++;
+        blackScore.increment();
+        whiteStonesCount.decrement();
       } else {
-        whiteScore++;
+        whiteScore.increment();
+        blackStonesCount.decrement();
       }
       massEl[y][x].state = "bisque";
       if (x + 1 < kollSqInLine) {
@@ -96,8 +100,9 @@
       }
     }
     funcPeresobratMtrix();
-    if ($count % 2 === 0) {
+    if ($stepNumber % 2 === 0) {
       massEl[y][x].state = "black";
+      blackStonesCount.increment();
       if (x + 1 < kollSqInLine) {
         if (massEl[y][x + 1].state === "white") {
           funcProv(x + 1, y, "white");
@@ -145,6 +150,7 @@
       gameState = "white";
     } else {
       massEl[y][x].state = "white";
+      whiteStonesCount.increment();
       if (x + 1 < kollSqInLine) {
         if (massEl[y][x + 1].state === "black") {
           funcProv(x + 1, y, "black");
@@ -192,12 +198,12 @@
       gameState = "black";
     }
     //-----------------------------
-    if ($count % 2 === 0) {
+    if ($stepNumber % 2 === 0) {
       funcProv(x, y, "black");
       console.log(stateProv);
       if (stateProv) {
         massEl[y][x].state = "bisque";
-        count.decrement();
+        stepNumber.decrement();
         gameState = "black";
       }
       stateProv = true;
@@ -207,14 +213,14 @@
       console.log(stateProv);
       if (stateProv) {
         massEl[y][x].state = "bisque";
-        count.decrement();
+        stepNumber.decrement();
         gameState = "white";
       }
       stateProv = true;
       funcPeresobratMtrix();
     }
     //-----------------------------
-    count.increment();
+    stepNumber.increment();
   }
 
   //функции для компонента fieldEditor
@@ -232,9 +238,10 @@
   }
 </script>
 
-<h1>Сейчас ходит игрок - {gameState}</h1>
-<h2>Очки игрока black: {blackScore}</h2>
-<h2>Очки игрока white: {whiteScore}</h2>
+<!-- <h1>Сейчас ходит игрок - {gameState}</h1> -->
+<!-- <h1>Сейчас ходит игрок - {gameState}</h1> -->
+<!-- <h2>Очки игрока black: {$blackScore}</h2>
+<h2>Очки игрока white: {$whiteScore}</h2> -->
 
 <!-- <FieldEditor {funcUpdate} {kollSqInLine} /> -->
 

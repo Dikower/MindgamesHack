@@ -12,6 +12,7 @@
   import { whiteScore } from "./storage";
   import { blackStonesCount } from "./storage";
   import { whiteStonesCount } from "./storage";
+  import { gameHistory } from "./storage";
 
   //функция для компонента square
   function funcPaint(x, y) {
@@ -102,6 +103,7 @@
     funcPeresobratMtrix();
     if ($stepNumber % 2 === 0) {
       massEl[y][x].state = "black";
+      $gameHistory = [...$gameHistory,["Black", x+1, y+1]];
       blackStonesCount.increment();
       if (x + 1 < kollSqInLine) {
         if (massEl[y][x + 1].state === "white") {
@@ -151,6 +153,7 @@
     } else {
       massEl[y][x].state = "white";
       whiteStonesCount.increment();
+      $gameHistory = [...$gameHistory,["White", x+1, y+1]];
       if (x + 1 < kollSqInLine) {
         if (massEl[y][x + 1].state === "black") {
           funcProv(x + 1, y, "black");

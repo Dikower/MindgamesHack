@@ -7,14 +7,19 @@
   let sizeBoard = kollSqInLine * sizeSq;
   let massEl = [];
   let gameState = "black";
-
+  export let hints = [];
   import { blackScore } from "./storage";
   import { whiteScore } from "./storage";
   import { blackStonesCount } from "./storage";
   import { whiteStonesCount } from "./storage";
   import { gameHistory } from "./storage";
   export let funcForTime = {};
-
+$: {
+  console.log(hints);
+  hints.forEach(hint => {
+    funcUpdate(hint.move.charCodeAt(0)-65, hint.move.slice(1), '#6476ff');
+  });
+}
   //функция для компонента square
   function funcPaint(x, y) {
     funcForTime();

@@ -1,7 +1,7 @@
   <script>
     import { onMount } from 'svelte'
     import { push } from 'svelte-spa-router'
-    import { backendUrl } from "./api";
+    import { backendUrl, centaurToken } from "./api";
     import Table from './Table.svelte'
     import Game from './Game.svelte'
     import Board from './Board.svelte'
@@ -14,14 +14,25 @@
     import { updateTime, elapsed } from './storage';
     import { w3cwebsocket as W3CWebSocket } from "websocket"
 
-    let gameId = 0;
+    let gameId = localStorage.getItem('gameId');
     let client = new W3CWebSocket('ws://172.104.137.176:41239');
     let token = localStorage.getItem('token');
+    let hints = [];
+    async function getHintMoves(count) {
+      const response = await fetch(backendUrl+'hints/best-moves?game_id='+gameId+'&centaur_token='+
+          centaurToken+'&token='+token+'&count='+count);
+        const json = await response.json();
+        hints = json.hint;
+    }
 
-    onMount(() => {
+    onMount(async () => {
       if (token === null) {
         push('/');
       }
+      const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
+        const json = await response.json();
+        gameId = json.gameId;
+        localStorage.setItem('gameId', json.gameId);
     });
     // onMount(async () => {
     //   const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
@@ -82,7 +93,7 @@
       <div class="podskazki ">
         <h1 class="text-align-center">Подсказки</h1>
         <div class="btn-group-vertical ">
-          <button class="btn"> Подсказка -  1</button>
+          <button class="btn" on:click={()=> getHintMoves(2)}> Подсказка -  1</button>
           <button class="btn"> Подсказка -  2</button>
           <button class="btn"> Подсказка -  3</button>
           <button class="btn"> Подсказка -  4</button>
@@ -93,7 +104,7 @@
     <div class="col-md-6">
       <div class="game">
         <div class="field">
-          <Game {funcForTime}/>
+          <Game {funcForTime} bind:hints/>
         </div>
 	      	
       </div>

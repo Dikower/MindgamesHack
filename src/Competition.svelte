@@ -122,7 +122,6 @@
             <h2> Игрок 2 (white)</h2>
             <p>Очков : {$whiteScore}</p>
             <p>Камней : {$whiteStonesCount}, max: 84</p>
-
           </div>
         </div>
       </div>
@@ -146,7 +145,7 @@
           <h3>{colorAttack}</h3>
         </div>
         <div class="col-6">
-          <button on:click={funcSkip}><h3>пропуск хода</h3></button>
+          <button on:click={funcSkip}>Пропуск хода</button>
         </div>
       </div>
     </div>
@@ -209,4 +208,18 @@
     overflow-y: scroll;
     height: 300px;
   }
+
+  .row h2 {
+    font-size: 25px;
+  }
+
+  .row h3 {
+    font-size: 15px;
+  }
+
+  .col-6 button {
+    padding: 10px;
+    font-size: 16px;
+  }
+
 </style>

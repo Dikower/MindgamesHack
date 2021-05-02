@@ -7,6 +7,7 @@
     import { whiteScore } from "./storage";
     import { blackStonesCount } from "./storage";
     import { whiteStonesCount } from "./storage";
+    import { gameHistory } from "./storage";
 
     $: gameState = $stepNumber%2;
     $: colorAttack = gameState ? "white" : "black";
@@ -27,10 +28,10 @@
       <div class="podskazki ">
         <h1 class="text-align-center">Подсказки</h1>
         <div class="btn-group-vertical ">
-          <!-- <button class="btn"> Подсказка -  1</button>
+          <button class="btn"> Подсказка -  1</button>
           <button class="btn"> Подсказка -  2</button>
           <button class="btn"> Подсказка -  3</button>
-          <button class="btn"> Подсказка -  4</button> -->
+          <button class="btn"> Подсказка -  4</button>
         </div>
       </div>
 
@@ -62,10 +63,9 @@
         <div class="stat">
           <div class="row ">
             <h2>История ходов</h2>
-            <p1>loremipsum </p1>
-            <p1>loremipsum </p1>
-            <p1>loremipsum </p1>
-            <p1>loremipsum </p1>
+            {#each $gameHistory as element }
+              <h3>{element[0]}: x-{element[1]}, y-{element[2]}.</h3>
+            {/each}
           </div>
         </div>
       </div>
@@ -113,5 +113,8 @@
     border-radius: 16px;
     padding: 10px;
   }
-
+  .stat{
+    overflow-y: scroll;
+    height: 300px;
+  }
 </style>

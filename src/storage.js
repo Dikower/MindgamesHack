@@ -16,3 +16,4 @@ export const blackScore = simpleCount();
 export const whiteScore = simpleCount();
 export const blackStonesCount = simpleCount();
 export const whiteStonesCount = simpleCount();
+export const gameHistory = writable([]);

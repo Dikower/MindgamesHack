@@ -1,11 +1,18 @@
 <script>
   import {push} from 'svelte-spa-router'
   import { backendUrl } from './api'
-  let token = 'd7f14fa928f414a39da6696a8d9f3fda5a0f5e54';
+  import {onMount} from "svelte";
+  let token = localStorage.getItem('token');
+
+  onMount(() => {
+    if (token === null) {
+      push('/');
+    }
+  });
+
   async function GetInfo() {
     const response = await fetch(backendUrl+'user/profile?token='+token, {method: 'GET'});
     const json = await response.json();
-    localStorage.setItem('token', json.token);
     console.log(json);
     return json ; 
   }

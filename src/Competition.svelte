@@ -10,51 +10,56 @@
     import { blackStonesCount } from "./storage";
     import { whiteStonesCount } from "./storage";
     import { gameHistory } from "./storage";
-    import { w3cwebsocket as W3CWebSocket } from "websocket"
+    import { updateTime, elapsed } from './storage';
+    // import { w3cwebsocket as W3CWebSocket } from "websocket"
 
-    let gameId = 0;
-    let client = new W3CWebSocket('ws://172.104.137.176:41239');
-    let token = localStorage.getItem('token');
-    onMount(async () => {
-      const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
-      const json = await response.json();
-      gameId = json.gameId;
-      localStorage.setItem('gameId', json.gameId);
-      client.onopen = function () {
-        client.send(JSON.stringify([5, 'go/game']));
-        console.log(token);
-        console.log(gameId);
-        client.send(JSON.stringify([
-          7, // 7 - статус: отправка сообщения
-          "go/game", // в какой топик отправляется сообщение
-          {
-            command: "auth",  // команда на авторизацию подключения
-            token: token, // токен игрока
-            game_id: gameId // номер игры
-          }
-        ]));
-        client.send(JSON.stringify([
-          7,// 7 - статус: отправка сообщения
-          "go/game", // в какой топик отправляется сообщение
-          {
-            command: "move", // команда на отправку хода
-            token: token,  // токен игрока
-            place: 'd13',  // место куда сделать ход, формат: d13
-            game_id: gameId // номер игры
-          }
-        ]));
-      }
-    });
+    // let gameId = 0;
+    // let client = new W3CWebSocket('ws://172.104.137.176:41239');
+    // let token = localStorage.getItem('token');
+    // onMount(async () => {
+    //   const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
+    //   const json = await response.json();
+    //   gameId = json.gameId;
+    //   localStorage.setItem('gameId', json.gameId);
+    //   client.onopen = function () {
+    //     client.send(JSON.stringify([5, 'go/game']));
+    //     console.log(token);
+    //     console.log(gameId);
+    //     client.send(JSON.stringify([
+    //       7, // 7 - статус: отправка сообщения
+    //       "go/game", // в какой топик отправляется сообщение
+    //       {
+    //         command: "auth",  // команда на авторизацию подключения
+    //         token: token, // токен игрока
+    //         game_id: gameId // номер игры
+    //       }
+    //     ]));
+    //     client.send(JSON.stringify([
+    //       7,// 7 - статус: отправка сообщения
+    //       "go/game", // в какой топик отправляется сообщение
+    //       {
+    //         command: "move", // команда на отправку хода
+    //         token: token,  // токен игрока
+    //         place: 'd13',  // место куда сделать ход, формат: d13
+    //         game_id: gameId // номер игры
+    //       }
+    //     ]));
+    //   }
+    // });
 
-    client.onmessage = function(response)  {
-      console.log(response.data);
+    // client.onmessage = function(response)  {
+    //   console.log(response.data);
+    // }
+
+    function funcForTime(){
+      updateTime();
     }
-
 
     $: gameState = $stepNumber%2;
     $: colorAttack = gameState ? "white" : "black";
     function funcSkip(){
       stepNumber.decrement();
+      updateTime();
     }
 
   </script>
@@ -81,7 +86,7 @@
     <div class="col-md-6">
       <div class="game">
         <h3>{colorAttack}</h3>
-	      <Game/>	
+	      <Game {funcForTime}/>	
       </div>
     </div>
     <div class="col-md-3">
@@ -91,12 +96,12 @@
             <h2>Игрок 1 (black)</h2>
           </div>
           <p>Очков : {$blackScore}</p>
-          <p>Камней : {$blackStonesCount}</p>
+          <p>Камней : {$blackStonesCount}, max: 84</p>
 
           <div class="player row">
             <h2> Игрок 2 (white)</h2>
             <p>Очков : {$whiteScore}</p>
-            <p>Камней : {$whiteStonesCount}</p>
+            <p>Камней : {$whiteStonesCount}, max: 84</p>
 
           </div>
         </div>
@@ -113,7 +118,7 @@
       </div>
       <div class="row d-flex flex-colum align-text-bottom panel">
         <div class="col-6">
-          <span><h3>00:00</h3></span>
+          <span><h3>{$elapsed}</h3></span>
         </div>
         <div class="col-6">
           <button on:click={funcSkip}><h3>пропуск хода</h3></button>

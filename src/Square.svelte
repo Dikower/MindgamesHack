@@ -3,7 +3,7 @@
 
   export let x = 0;
   export let y = 0;
-  export let size = 50;
+  export let size = 40;
   export let state = "bisque";
   export let kollSqInLine = 0;
   export let funcPaint = {};

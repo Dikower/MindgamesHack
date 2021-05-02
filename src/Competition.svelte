@@ -87,7 +87,7 @@
 </svelte:head>
 
 
-<div class="continaer">
+<div class="container-fluid">
   <div class="row ">
     <div class="col-md-3 text-align-middle">
       <div class="podskazki ">
@@ -113,13 +113,13 @@
       <div class="row">
         <div class="players">
           <div class="player row">
-            <h2>Игрок 1 (black)</h2>
+            <h1>Игрок 1 - black</h1>
           </div>
           <p>Очков : {$blackScore}</p>
           <p>Камней : {$blackStonesCount}, max: 84</p>
 
           <div class="player row">
-            <h2> Игрок 2 (white)</h2>
+            <h1> Игрок 2 - white</h1>
             <p>Очков : {$whiteScore}</p>
             <p>Камней : {$whiteStonesCount}, max: 84</p>
           </div>
@@ -128,9 +128,9 @@
       <div class="row">
         <div class="stat">
           <div class="row ">
-            <h2>История ходов</h2>
+            <h1>История ходов</h1>
             {#each $gameHistory as element }
-              <h3>{element[0]}: x-{element[1]}, y-{element[2]}.</h3>
+              <p>{element[0]}: x-{element[1]}, y-{element[2]}.</p>
             {/each}
           </div>
         </div>
@@ -138,14 +138,14 @@
       <div class="row d-flex flex-colum align-text-bottom panel">
         <div class="col-6">
           {#if $elapsed > 59}
-          <span><h3>{Math.floor($elapsed/60)}:{$elapsed%60}</h3></span>
+          <span><h2>Время: {Math.floor($elapsed/60)}:{$elapsed%60}</h2></span>
           {:else}
-            <span><h3>0:{$elapsed}</h3></span>
+            <span><h2>Время: 0:{$elapsed}</h2></span>
           {/if}
-          <h3>{colorAttack}</h3>
+          <h2>Ход:{colorAttack}</h2>
         </div>
         <div class="col-6">
-          <button on:click={funcSkip}>Пропуск хода</button>
+          <button on:click={funcSkip}><h2>Пропуск хода</h2></button>
         </div>
       </div>
     </div>
@@ -164,7 +164,7 @@
   }
   h1 {
     font-size: 1.7em;
-    font-weight: 600;
+    font-weight: bold;
   }
   h2, p{
     font-size: 1.4em;
@@ -199,7 +199,7 @@
     margin: 0 0 1em 0;
   }
   .stat, .players,.podskazki,.game{
-    background: #F0F0F3;
+
     box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
     border-radius: 16px;
     padding: 10px;

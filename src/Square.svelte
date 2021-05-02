@@ -7,7 +7,7 @@
     export let funcPaint = {};
     let sizeD = size/2;
     function funcClick() {
-      if(state==="bisque"){
+      if(state==="bisque" || state==='#83DBD6'){
         funcPaint();
       }
     }

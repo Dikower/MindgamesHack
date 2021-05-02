@@ -17,7 +17,7 @@
 $: {
   console.log(hints);
   hints.forEach(hint => {
-    funcUpdate(hint.move.charCodeAt(0)-65, hint.move.slice(1), '#6476ff');
+    funcUpdate(hint.move.charCodeAt(0)-65, hint.move.slice(1), '#83DBD6');
   });
 }
   //функция для компонента square

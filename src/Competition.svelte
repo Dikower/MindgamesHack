@@ -18,22 +18,22 @@
     let client = new W3CWebSocket('ws://172.104.137.176:41239');
     let token = localStorage.getItem('token');
     let hints = [];
-    async function getHintMoves(count) {
-      const response = await fetch(backendUrl+'hints/best-moves?game_id='+gameId+'&centaur_token='+
-          centaurToken+'&token='+token+'&count='+count);
-        const json = await response.json();
-        hints = json.hint;
-    }
+    // async function getHintMoves(count) {
+    //   const response = await fetch(backendUrl+'hints/best-moves?game_id='+gameId+'&centaur_token='+
+    //       centaurToken+'&token='+token+'&count='+count);
+    //     const json = await response.json();
+    //     hints = json.hint;
+    // }
 
-    onMount(async () => {
-      if (token === null) {
-        push('/');
-      }
-      const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
-        const json = await response.json();
-        gameId = json.gameId;
-        localStorage.setItem('gameId', json.gameId);
-    });
+    // onMount(async () => {
+    //   if (token === null) {
+    //     push('/');
+    //   }
+    //   const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
+    //     const json = await response.json();
+    //     gameId = json.gameId;
+    //     localStorage.setItem('gameId', json.gameId);
+    // });
     // onMount(async () => {
     //   const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
     //   const json = await response.json();

@@ -13,7 +13,7 @@
     }
   </script>
   
-  <svg on:click={funcClick} width={size} height={size} viewBox="0 0 {size} {size}" >
+  <svg on:click={funcClick} width={size} height={size} viewBox="0 0 {size} {size}">
     <g>
      <rect x="0" y="0" width={size} height={size}  fill="#fbefdf"/>
      <g display="none">
@@ -23,30 +23,33 @@
     <g>
       {#if (y===0)||(y===kollSqInLine-1)}
         {#if (y===0)}
-          <line stroke="#999999" x1={sizeD} y1={sizeD} x2={sizeD} y2={size} opacity="0.5"/>
+          <line stroke="#353a43" x1={sizeD} y1={sizeD} x2={sizeD} y2={size} opacity="0.5"/>
         {:else}
-          <line stroke="#999999" x1={sizeD} y1={0} x2={sizeD} y2={sizeD} opacity="0.5"/>
+          <line stroke="#353a43" x1={sizeD} y1={0} x2={sizeD} y2={sizeD} opacity="0.5"/>
         {/if}
         {#if (x===0)}
-          <line stroke="#999999" x1={sizeD} y1={sizeD} x2={size} y2={sizeD} opacity="0.5"/>
+          <line stroke="#353a43" x1={sizeD} y1={sizeD} x2={size} y2={sizeD} opacity="0.5"/>
         {:else if (x===kollSqInLine-1)}
-          <line stroke="#999999" x1="0" y1={sizeD} x2={sizeD} y2={sizeD} opacity="0.5"/>
+          <line stroke="#353a43" x1="0" y1={sizeD} x2={sizeD} y2={sizeD} opacity="0.5"/>
         {:else}
-        <line stroke="#999999" x1="0" y1={sizeD} x2={size} y2={sizeD} opacity="0.5"/>
+        <line stroke="#353a43" x1="0" y1={sizeD} x2={size} y2={sizeD} opacity="0.5"/>
         {/if}
       {:else if (x===0)||(x===kollSqInLine-1)}
-        <line stroke="#999999" x1={sizeD} y1="0" x2={sizeD} y2={size} opacity="0.5"/>
+        <line stroke="#353a43" x1={sizeD} y1="0" x2={sizeD} y2={size} opacity="0.5"/>
         {#if (x===0)}
-          <line stroke="#999999" x1={sizeD} y1={sizeD} x2={size} y2={sizeD} opacity="0.5"/>
+          <line stroke="#353a43" x1={sizeD} y1={sizeD} x2={size} y2={sizeD} opacity="0.5"/>
         {:else}
-          <line stroke="#999999" x1="0" y1={sizeD} x2={sizeD} y2={sizeD} opacity="0.5"/>
+          <line stroke="#353a43" x1="0" y1={sizeD} x2={sizeD} y2={sizeD} opacity="0.5"/>
         {/if}
       {:else}
-        <line stroke="#999999" x1="0" y1={sizeD} x2={size} y2={sizeD} opacity="0.5"/>
-        <line stroke="#999999" x1={sizeD} y1="0" x2={sizeD} y2={size} opacity="0.5"/>
+        <line stroke="#353a43" x1="0" y1={sizeD} x2={size} y2={sizeD} opacity="0.5"/>
+        <line stroke="#353a43" x1={sizeD} y1="0" x2={sizeD} y2={size} opacity="0.5"/>
+        {#if (((x===3)||(x===9)) && ((y===3)||(y===9)))||(x===6 && y===6)}
+          <circle cx={sizeD} cy={sizeD} r="4" stroke-width="1" fill="#808b9f" />
+        {/if}
       {/if}
      {#if state != "bisque"}
-     <circle cx={sizeD} cy={sizeD} r="15" stroke="black" stroke-width="1" fill={state} />
+      <circle cx={sizeD} cy={sizeD} r="15" stroke="black" stroke-width="1" fill={state} />
      {/if}
     </g>
    </svg>

@@ -138,7 +138,11 @@
       </div>
       <div class="row d-flex flex-colum align-text-bottom panel">
         <div class="col-6">
-          <span><h3>{$elapsed}</h3></span>
+          {#if $elapsed > 59}
+          <span><h3>{Math.floor($elapsed/60)}:{$elapsed%60}</h3></span>
+          {:else}
+            <span><h3>0:{$elapsed}</h3></span>
+          {/if}
           <h3>{colorAttack}</h3>
         </div>
         <div class="col-6">

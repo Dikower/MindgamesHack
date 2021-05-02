@@ -103,10 +103,7 @@
     </div>
     <div class="col-md-6">
       <div class="game">
-        <div class="field">
           <Game {funcForTime} bind:hints/>
-        </div>
-	      	
       </div>
     </div>
     <div class="col-md-3">
@@ -183,22 +180,21 @@
     flex-direction: column;
     align-items: center; */
     
-    min-height: 90vh;
     /* margin-left: 40px;
     width: 850px; */
+
   }
   .field{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
     /* height: 00px;  */
     width: 600px; 
   }
 
-  .stat,.players,.panel {
+  .stat,.players {
     margin: 0 0 1em 0;
   }
-  .stat, .players,.podskazki,.game{
+  .stat, .players,.podskazki,.field{
 
     box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
     border-radius: 16px;

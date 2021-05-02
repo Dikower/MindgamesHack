@@ -9,24 +9,23 @@
     console.log(json);
     return json ; 
   }
+  
 let promise = GetInfo();
 </script>
 <div class="window">
-  <div class="auth-block">
-    
+   <div class="menu">
     {#await GetInfo()}
     <h2>Моментик..</h2>
     {:then items}
     <h3>Пользователь: {items.user.nickname} </h3>
     <span>Почта: {items.user.email} </span>
     <span>Winrate: {items.user.winrate} </span>
-    <br>
+    
     <button class="letsogo"><a  href="/#/competition-player">Найти игру с соперником.</a></button>
     <button class="letsogo"><a  href="/#/competition-ai">Начать игру с ИИ.</a></button>
     <button class="letsogo"><a  href="/#/profile-fullstat">Посмотреть полную статистику.</a></button>
     {:catch error}
       <p style="color: red">{error.message}</p>
     {/await}
-
-  </div>
+   </div>
 </div>

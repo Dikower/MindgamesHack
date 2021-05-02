@@ -15,5 +15,6 @@
     <input type="email" placeholder="Email" bind:value={email}>
     <input type="password" placeholder="Пароль" bind:value={password}>
     <button on:click={Submit}>Войти</button>
+    <a href="/">Регистрация</a>
   </div>
 </div>

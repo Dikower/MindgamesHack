@@ -16,6 +16,6 @@
     <input type="email" placeholder="Email" bind:value={email}>
     <input type="text" placeholder="Никнейм" bind:value={nickname}>
     <button on:click={Submit}>Зарегистрироваться</button>
-    <a>qwe</a>
+    <a href="/#/signin">Войти</a>
   </div>
 </div>

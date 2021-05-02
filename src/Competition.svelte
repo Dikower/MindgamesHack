@@ -1,4 +1,6 @@
   <script>
+    import { onMount } from 'svelte'
+    import { backendUrl } from "./api";
     import Table from './Table.svelte'
     import Game from './Game.svelte'
     import Board from './Board.svelte'
@@ -7,6 +9,46 @@
     import { whiteScore } from "./storage";
     import { blackStonesCount } from "./storage";
     import { whiteStonesCount } from "./storage";
+    import { w3cwebsocket as W3CWebSocket } from "websocket"
+
+    let gameId = 0;
+    let client = new W3CWebSocket('ws://172.104.137.176:41239');
+    let token = localStorage.getItem('token');
+    onMount(async () => {
+      const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
+      const json = await response.json();
+      gameId = json.gameId;
+      localStorage.setItem('gameId', json.gameId);
+      client.onopen = function () {
+        client.send(JSON.stringify([5, 'go/game']));
+        console.log(token);
+        console.log(gameId);
+        client.send(JSON.stringify([
+          7, // 7 - статус: отправка сообщения
+          "go/game", // в какой топик отправляется сообщение
+          {
+            command: "auth",  // команда на авторизацию подключения
+            token: token, // токен игрока
+            game_id: gameId // номер игры
+          }
+        ]));
+        client.send(JSON.stringify([
+          7,// 7 - статус: отправка сообщения
+          "go/game", // в какой топик отправляется сообщение
+          {
+            command: "move", // команда на отправку хода
+            token: token,  // токен игрока
+            place: 'd13',  // место куда сделать ход, формат: d13
+            game_id: gameId // номер игры
+          }
+        ]));
+      }
+    });
+
+    client.onmessage = function(response)  {
+      console.log(response.data);
+    }
+
 
     $: gameState = $stepNumber%2;
     $: colorAttack = gameState ? "white" : "black";

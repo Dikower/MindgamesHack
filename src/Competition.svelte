@@ -25,15 +25,15 @@
         hints = json.hint;
     }
 
-    // onMount(async () => {
-    //   if (token === null) {
-    //     push('/');
-    //   }
-    //   const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
-    //     const json = await response.json();
-    //     gameId = json.gameId;
-    //     localStorage.setItem('gameId', json.gameId);
-    // });
+    onMount(async () => {
+      if (token === null) {
+        push('/');
+      }
+      const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
+        const json = await response.json();
+        gameId = json.gameId;
+        localStorage.setItem('gameId', json.gameId);
+    });
     // onMount(async () => {
     //   const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
     //   const json = await response.json();
@@ -93,10 +93,10 @@
       <div class="podskazki ">
         <h1 class="text-align-center">Подсказки</h1>
         <div class="btn-group-vertical ">
-          <button class="btn" on:click={()=> getHintMoves(2)}> Подсказка -  1</button>
-          <button class="btn"> Подсказка -  2</button>
-          <button class="btn"> Подсказка -  3</button>
-          <button class="btn"> Подсказка -  4</button>
+          <button class="btn" on:click={()=> getHintMoves(1)}> Получить количество ходов - 1 </button>
+          <button class="btn" on:click={()=> getHintMoves(2)}> Получить количество ходов - 2 </button>
+          <button class="btn" on:click={()=> getHintMoves(3)}> Получить количество ходов - 3 </button>
+
         </div>
       </div>
 
@@ -160,9 +160,11 @@
     color : #728ab7;
   }
   h1 {
-    font-size: 2em;
+    font-size: 1.7em;
+    font-weight: 600;
   }
   h2, p{
+    font-size: 1.4em;
     margin-bottom: 5px;
   }
   button {

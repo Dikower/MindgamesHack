@@ -7,6 +7,7 @@
   import Board from './Board.svelte'
   import Signup from './Signup.svelte'
   import Signin from './Signin.svelte'
+  import Profile from './Profile.svelte'
   import Competition from './Competition.svelte'
   import Router from 'svelte-spa-router'
 
@@ -15,7 +16,8 @@
     '/': Signup,
     '/signin': Signin,
     '/competition': Competition,
-    '/board/:timestamp': Board
+    '/board/:timestamp': Board,
+    '/profile' : Profile,
   }
 </script>
 

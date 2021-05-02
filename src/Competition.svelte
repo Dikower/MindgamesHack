@@ -85,8 +85,10 @@
     </div>
     <div class="col-md-6">
       <div class="game">
-        <h3>{colorAttack}</h3>
-	      <Game {funcForTime}/>	
+        <div class="field">
+          <Game {funcForTime}/>
+        </div>
+	      	
       </div>
     </div>
     <div class="col-md-3">
@@ -119,6 +121,7 @@
       <div class="row d-flex flex-colum align-text-bottom panel">
         <div class="col-6">
           <span><h3>{$elapsed}</h3></span>
+          <h3>{colorAttack}</h3>
         </div>
         <div class="col-6">
           <button on:click={funcSkip}><h3>пропуск хода</h3></button>
@@ -147,10 +150,28 @@
   button {
     margin-bottom: 10px;
     font-size: 1.3em;
+    border: 0px;
+    border-radius: 10px;
   }
   .game {
+    /* margin-left: -100px;
+    margin-top: -50px; */
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    
     min-height: 90vh;
+    /* margin-left: 40px;
+    width: 850px; */
   }
+  .field{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    /* height: 00px;  */
+    width: 600px; 
+  }
+
   .stat,.players,.panel {
     margin: 0 0 1em 0;
   }

@@ -259,8 +259,8 @@
 </div>
 
 <style>
-  .go {
+  /* .go {
     margin-left: 100px;
     margin-top: 100px;
-  }
+  } */
 </style>

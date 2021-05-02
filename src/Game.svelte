@@ -3,7 +3,7 @@
   import FieldEditor from "./FieldEditor.svelte";
   import { stepNumber } from "./storage";
   let sizeSq = 50;
-  let kollSqInLine = 9;
+  let kollSqInLine = 13;
   let sizeBoard = kollSqInLine * sizeSq;
   let massEl = [];
   let gameState = "black";
@@ -13,9 +13,11 @@
   import { blackStonesCount } from "./storage";
   import { whiteStonesCount } from "./storage";
   import { gameHistory } from "./storage";
+  export let funcForTime = {};
 
   //функция для компонента square
   function funcPaint(x, y) {
+    funcForTime();
     //функция очистки
     let matrixForProv = [];
     let stateProv = true;

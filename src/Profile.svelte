@@ -20,11 +20,10 @@ let promise = GetInfo();
     <h3>Пользователь: {items.user.nickname} </h3>
     <span>Почта: {items.user.email} </span>
     <span>Winrate: {items.user.winrate} </span>
-    <span>История игр: {items.user.games_history} </span>
-    
-    <button class="letsogo"><a  href="/#/competition-player">Найти игру с соперником!</a></button>
-    <button class="letsogo"><a  href="/#/competition-ai">Начать игру с ИИ!</a></button>
-    <button class="letsogo"><a  href="/#/profile-fullstat">Посмотреть полную статистику!</a></button>
+    <br>
+    <button class="letsogo"><a  href="/#/competition-player">Найти игру с соперником.</a></button>
+    <button class="letsogo"><a  href="/#/competition-ai">Начать игру с ИИ.</a></button>
+    <button class="letsogo"><a  href="/#/profile-fullstat">Посмотреть полную статистику.</a></button>
     {:catch error}
       <p style="color: red">{error.message}</p>
     {/await}

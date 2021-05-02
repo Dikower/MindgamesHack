@@ -1,16 +1,20 @@
 <script>
-    export let x = 0;
-    export let y = 0;
-    export let size = 50;
-    export let state = "bisque";
-    export let kollSqInLine = 0;
-    export let funcPaint = {};
-    let sizeD = size/2;
-    function funcClick() {
-      if(state==="bisque" || state==='#83DBD6'){
-        funcPaint();
-      }
+  import {createEventDispatcher} from 'svelte'
+
+  export let x = 0;
+  export let y = 0;
+  export let size = 50;
+  export let state = "bisque";
+  export let kollSqInLine = 0;
+  export let funcPaint = {};
+  let sizeD = size/2;
+  const dispatch = createEventDispatcher();
+  function funcClick() {
+    dispatch('newMove');
+    if(state==="bisque" || state==='#83DBD6'){
+      funcPaint();
     }
+  }
   </script>
   
   <svg on:click={funcClick} width={size} height={size} viewBox="0 0 {size} {size}">

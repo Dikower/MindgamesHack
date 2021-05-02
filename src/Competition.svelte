@@ -12,18 +12,18 @@
     import { whiteStonesCount } from "./storage";
     import { gameHistory } from "./storage";
     import { updateTime, elapsed } from './storage';
-    // import { w3cwebsocket as W3CWebSocket } from "websocket"
+    import { w3cwebsocket as W3CWebSocket } from "websocket"
 
-    // let gameId = localStorage.getItem('gameId');
-    // let client = new W3CWebSocket('ws://172.104.137.176:41239');
-    // let token = localStorage.getItem('token');
-    // let hints = [];
-    // async function getHintMoves(count) {
-    //   const response = await fetch(backendUrl+'hints/best-moves?game_id='+gameId+'&centaur_token='+
-    //       centaurToken+'&token='+token+'&count='+count);
-    //     const json = await response.json();
-    //     hints = json.hint;
-    // }
+    let gameId = localStorage.getItem('gameId');
+    let client = new W3CWebSocket('ws://172.104.137.176:41239');
+    let token = localStorage.getItem('token');
+    let hints = [];
+    async function getHintMoves(count) {
+      const response = await fetch(backendUrl+'hints/best-moves?game_id='+gameId+'&centaur_token='+
+          centaurToken+'&token='+token+'&count='+count);
+        const json = await response.json();
+        hints = json.hint;
+    }
 
     // onMount(async () => {
     //   if (token === null) {
@@ -104,8 +104,7 @@
     <div class="col-md-6">
       <div class="game">
         <div class="field">
-          <!-- <Game {funcForTime} bind:hints/> -->
-          <Game {funcForTime}/>
+          <Game {funcForTime} bind:hints/>
         </div>
 	      	
       </div>

@@ -20,6 +20,13 @@ $: {
     funcUpdate(hint.move.charCodeAt(0)-65, hint.move.slice(1), '#83DBD6');
   });
 }
+
+function deleteHints() {
+  hints.forEach(hint => {
+    funcUpdate(hint.move.charCodeAt(0)-65, hint.move.slice(1), 'bisque');
+  });
+  hints = [];
+}
   //функция для компонента square
   function funcPaint(x, y) {
     funcForTime();
@@ -258,7 +265,7 @@ $: {
 <div class="go" style="width:{sizeBoard}px; height: {sizeBoard}px">
   {#each massEl as mass}
     {#each mass as el}
-      <Square {...el} funcPaint={() => funcPaint(el.x, el.y)} {kollSqInLine}/>
+      <Square {...el} funcPaint={() => funcPaint(el.x, el.y)} {kollSqInLine} on:newMove={deleteHints}/>
     {/each}
   {/each}
 </div>

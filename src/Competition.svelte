@@ -1,5 +1,6 @@
   <script>
     import { onMount } from 'svelte'
+    import { push } from 'svelte-spa-router'
     import { backendUrl } from "./api";
     import Table from './Table.svelte'
     import Game from './Game.svelte'
@@ -11,11 +12,17 @@
     import { whiteStonesCount } from "./storage";
     import { gameHistory } from "./storage";
     import { updateTime, elapsed } from './storage';
-    // import { w3cwebsocket as W3CWebSocket } from "websocket"
+    import { w3cwebsocket as W3CWebSocket } from "websocket"
 
-    // let gameId = 0;
-    // let client = new W3CWebSocket('ws://172.104.137.176:41239');
-    // let token = localStorage.getItem('token');
+    let gameId = 0;
+    let client = new W3CWebSocket('ws://172.104.137.176:41239');
+    let token = localStorage.getItem('token');
+
+    onMount(() => {
+      if (token === null) {
+        push('/');
+      }
+    });
     // onMount(async () => {
     //   const response = await fetch(backendUrl + 'game/create/bot?token='+localStorage.getItem('token') , {method: 'POST'});
     //   const json = await response.json();
@@ -46,7 +53,7 @@
     //     ]));
     //   }
     // });
-
+    //
     // client.onmessage = function(response)  {
     //   console.log(response.data);
     // }
